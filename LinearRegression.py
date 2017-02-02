@@ -2,8 +2,11 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 #To visualize the result produced by linear regression algorithm
-def vislinreg(x,labels):
-	p=linreg(x,labels)
+def vislinreg(x,labels,iter=0):
+	if(iter==0):
+		p=linreg(x,labels)
+	else:
+		p=linreggrad(x,labels,iter)
 	print p
 	plt.plot(x,labels,'r--',x,x*p[1]+p[0])
 	plt.ylabel('y vs x and the poixs')
@@ -37,7 +40,6 @@ def linreggrad(x,labels,iter):
 		x=x.T
 	else:
 		x=np.append(x[:,0:1]*0+1,x,axis=1)
-    
 	w=np.array([np.zeros(x.shape[1])])
 	w=w.T
 	
